@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +11,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    TextEditingController _usernameController = TextEditingController();
+    const borderSide = BorderSide(
+      color: Colors.black,
+      width: 3,
+    );
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -48,7 +54,33 @@ class MyApp extends StatelessWidget {
               onChanged: (value) {
                 print(value);
               },
-            )
+            ),
+            TextField(
+              controller: _usernameController,
+              decoration: const InputDecoration(
+                label: Text(
+                  'E-mail',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black, width: 1),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: borderSide,
+                ),
+                // enabledBorder: OutlineInputBorder(
+                //     borderSide: BorderSide(color: Colors.red))),
+              ),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  print(_usernameController.text);
+                  _usernameController.clear();
+                },
+                child: Text('Show'))
           ],
         ),
       ),
